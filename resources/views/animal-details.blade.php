@@ -72,10 +72,16 @@
 <input class="w-12 text-center bg-transparent border-none focus:ring-0 font-bold" id="qty" readonly="" type="number" value="1"/>
 <button class="w-10 h-10 flex items-center justify-center text-primary hover:bg-surface-container transition-colors rounded-full" onclick="changeQty(1)">+</button>
 </div>
-<button class="flex-1 bg-primary text-on-primary rounded-full px-lg py-md font-label-lg hover:shadow-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-2">
-<span class="material-symbols-outlined">shopping_basket</span>
-                        إضافة إلى السلة
-                    </button>
+<form action="{{ route('cart.add-animal', $animal->id) }}" method="POST" class="flex-1">
+    @csrf
+
+    <button
+        type="submit"
+        class="w-full bg-primary text-on-primary rounded-full px-lg py-md font-label-lg hover:shadow-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">shopping_basket</span>
+        إضافة إلى السلة
+    </button>
+</form>
 </div>
 <button class="w-full border-[1.5px] border-primary text-primary rounded-full px-lg py-md font-label-lg hover:bg-primary-fixed-dim transition-colors flex items-center justify-center gap-2">
 <span class="material-symbols-outlined">medical_services</span>

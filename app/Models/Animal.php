@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Animal extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'type',
@@ -13,4 +16,14 @@ class Animal extends Model
         'description',
         'image',
     ];
+
+    public function cartItems()
+    {
+        return $this->morphMany(CartItem::class, 'cartable');
+    }
+
+    public function orderItems()
+    {
+        return $this->morphMany(OrderItem::class, 'orderable');
+    }
 }

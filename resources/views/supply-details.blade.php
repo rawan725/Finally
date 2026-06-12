@@ -54,11 +54,18 @@
                 </div>
             </div>
 
-            <button class="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-secondary transition-all">
-                إضافة إلى السلة
-            </button>
+            
 
-        </div>
+        </div><form action="{{ route('cart.addAnimal', $animal->id) }}" method="POST" class="flex-1">
+    @csrf
+
+    <button
+        type="submit"
+        class="w-full bg-primary text-on-primary rounded-full px-lg py-md font-label-lg hover:shadow-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">shopping_basket</span>
+        إضافة إلى السلة
+    </button>
+</form>
 
     </div>
 

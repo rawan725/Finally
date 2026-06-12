@@ -128,14 +128,20 @@
 
                     <div class="grid grid-cols-2 gap-3">
 
-                        <button
-                            type="button"
-                            class="py-3 rounded-xl bg-primary text-white font-semibold hover:bg-secondary transition-all active:scale-95 flex items-center justify-center gap-1">
-                            <span class="material-symbols-outlined text-[20px]">
-                                add_shopping_cart
-                            </span>
-                            السلة
-                        </button>
+                        <form action="{{ route('cart.addSupply', $supply->id) }}" method="POST">
+    @csrf
+
+    <button
+        type="submit"
+        class="w-full py-3 rounded-xl bg-primary text-white font-semibold hover:bg-secondary transition-all active:scale-95 flex items-center justify-center gap-1">
+
+        <span class="material-symbols-outlined text-[20px]">
+            add_shopping_cart
+        </span>
+
+        السلة
+    </button>
+</form>
 
                         <a href="{{ route('supplies.show', $supply->id) }}"
                            class="py-3 rounded-xl border border-primary text-primary font-semibold text-center hover:bg-primary hover:text-white transition-all active:scale-95 flex items-center justify-center gap-1">
