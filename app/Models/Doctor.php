@@ -15,6 +15,9 @@ class Doctor extends Model
         'experience_years',
         'consultation_price',
         'bio',
+        'phone',
+        'whatsapp_number',
+        'response_time',
         'image',
         'is_available',
     ];

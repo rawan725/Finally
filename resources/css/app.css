@@ -2,55 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Arabic Font */
 @font-face {
     font-family: "Noto Sans Arabic";
-    src: url("/fonts/NotoSansArabic-Regular.ttf");
+    src: url("/fonts/NotoSansArabic-Regular.ttf") format("truetype");
     font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Noto Sans Arabic";
-    src: url("/fonts/NotoSansArabic-Bold.ttf");
+    src: url("/fonts/NotoSansArabic-Bold.ttf") format("truetype");
     font-weight: 700;
-}
-@font-face {
-    font-family: 'Material Symbols Outlined';
-    src: url('/icons/MaterialSymbolsOutlined.woff2') format('woff2');
+    font-style: normal;
+    font-display: swap;
 }
 
-.material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
-    font-weight: normal;
+/* Material Symbols Icons */
+@font-face {
+    font-family: "Material Symbols Outlined";
+    src: url("/icons/material-symbols-outlined.woff2") format("woff2");
+    font-weight: 100 700;
     font-style: normal;
+    font-display: block;
 }
 
 body {
     font-family: "Noto Sans Arabic", sans-serif;
-            font-family: 'Noto Sans Arabic', 'Plus Jakarta Sans', sans-serif;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(27, 67, 50, 0.08);
-            box-shadow: 0px 4px 20px rgba(27, 67, 50, 0.04);
-        }
-        .hero-zoom:hover img {
-            transform: scale(1.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            height: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #86af99;
-            border-radius: 10px;
-            .glass-card {
+}
+
+.material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+
+    font-feature-settings: "liga";
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+
+    font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+}
+
+/* Glass Card */
+.glass-card {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -58,10 +65,12 @@ body {
     box-shadow: 0px 4px 20px rgba(27, 67, 50, 0.04);
 }
 
+/* Image Zoom */
 .hero-zoom:hover img {
     transform: scale(1.05);
 }
 
+/* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
     height: 4px;
 }
@@ -74,4 +83,3 @@ body {
     background: #86af99;
     border-radius: 10px;
 }
-        }

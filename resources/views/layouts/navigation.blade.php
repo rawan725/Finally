@@ -102,6 +102,16 @@
                             طلباتي
                         </a>
 
+                        <a href="{{ route('my.consultations') }}"
+   class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 transition-all">
+
+    <span class="material-symbols-outlined text-[20px]">
+        medical_services
+    </span>
+
+    استشاراتي
+</a>
+
                         @if(auth()->user()->is_admin)
                             <a href="{{ route('admin.orders') }}"
                                class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 transition-all">
@@ -153,6 +163,38 @@
         </span>
 
         إدارة الحيوانات
+    </a>
+@endif
+
+@if(auth()->user()->is_admin)
+    <a href="{{ route('admin.doctors') }}"
+       class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 transition-all">
+
+        <span class="material-symbols-outlined text-[20px]">
+            medical_services
+        </span>
+
+        إدارة الأطباء
+    </a>
+@endif
+
+@if(auth()->user()->is_admin)
+    <a href="{{ route('admin.doctor.bookings') }}"
+       class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 transition-all">
+
+        <span class="material-symbols-outlined text-[20px]">
+            assignment
+        </span>
+
+        إدارة الاستشارات
+    </a>
+@endif
+
+@if(auth()->user()->is_admin)
+    <a href="{{ route('admin.contact.messages') }}"
+       class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 transition-all">
+        <span class="material-symbols-outlined text-[20px]">mail</span>
+        رسائل التواصل
     </a>
 @endif
 

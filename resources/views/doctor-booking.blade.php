@@ -94,9 +94,9 @@
                 </div>
 
                 <form action="{{ route('doctor.book.store', ['doctor' => $doctor->id, 'type' => $type]) }}"
-                      method="POST"
-                      class="space-y-6">
-
+      method="POST"
+      enctype="multipart/form-data"
+      class="space-y-6">
                     @csrf
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -185,55 +185,153 @@
                             required>{{ old('problem_description') }}</textarea>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Extra Medical Details -->
+<div class="rounded-[2rem] bg-emerald-50/60 border border-emerald-100 p-6 space-y-6">
 
-                        <!-- Date -->
-                        <div class="space-y-2">
-                            <label class="text-sm font-bold text-emerald-900 block">
-                                تاريخ الموعد المفضل
-                            </label>
+    <div class="flex items-center gap-3 text-right">
+        <div class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center text-emerald-800 shadow-sm">
+            <span class="material-symbols-outlined">
+                health_and_safety
+            </span>
+        </div>
 
-                            <div class="relative bg-emerald-50/60 border border-emerald-100 rounded-2xl shadow-sm hover:border-emerald-400 transition-all">
+        <div>
+            <h3 class="text-xl font-black text-emerald-900">
+                تفاصيل إضافية للحالة
+            </h3>
 
-                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-emerald-700">
-                                    calendar_month
-                                </span>
+            <p class="text-sm text-emerald-900/50">
+                تساعد هذه المعلومات الطبيب على تقييم الحالة بشكل أسرع.
+            </p>
+        </div>
+    </div>
 
-                                <input
-                                    name="booking_date"
-                                    value="{{ old('booking_date') }}"
-                                    type="date"
-                                    dir="ltr"
-                                    class="w-full h-14 bg-transparent border-0 rounded-2xl pr-12 pl-4 text-emerald-900 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-700 text-left"
-                                />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-                            </div>
-                        </div>
+        <!-- Severity Level -->
+        <div class="bg-white rounded-3xl border border-emerald-100 p-5 shadow-sm">
 
-                        <!-- Time -->
-                        <div class="space-y-2">
-                            <label class="text-sm font-bold text-emerald-900 block">
-                                الوقت المفضل
-                            </label>
+            <label class="flex items-center gap-2 text-sm font-black text-emerald-900 mb-3">
+                <span class="material-symbols-outlined text-[22px] text-emerald-700">
+                    priority_high
+                </span>
 
-                            <div class="relative bg-emerald-50/60 border border-emerald-100 rounded-2xl shadow-sm hover:border-emerald-400 transition-all">
+                درجة الحالة
+            </label>
 
-                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-emerald-700">
-                                    schedule
-                                </span>
+            <select
+                name="severity_level"
+                required
+                class="w-full h-14 rounded-2xl border border-emerald-100 bg-emerald-50/60 px-4 text-emerald-900 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700">
 
-                                <input
-                                    name="booking_time"
-                                    value="{{ old('booking_time') }}"
-                                    type="time"
-                                    dir="ltr"
-                                    class="w-full h-14 bg-transparent border-0 rounded-2xl pr-12 pl-4 text-emerald-900 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-700 text-left"
-                                />
+                <option value="simple" {{ old('severity_level') == 'simple' ? 'selected' : '' }}>
+                    بسيطة
+                </option>
 
-                            </div>
-                        </div>
+                <option value="moderate" {{ old('severity_level') == 'moderate' ? 'selected' : '' }}>
+                    متوسطة
+                </option>
 
-                    </div>
+                <option value="emergency" {{ old('severity_level') == 'emergency' ? 'selected' : '' }}>
+                    طارئة
+                </option>
+
+            </select>
+
+            <p class="mt-3 text-xs text-emerald-900/50 leading-relaxed">
+                إذا كانت الحالة طارئة، يفضّل مراجعة أقرب عيادة فورًا.
+            </p>
+
+        </div>
+
+        <!-- Case Image -->
+        <div class="bg-white rounded-3xl border border-emerald-100 p-5 shadow-sm">
+
+            <label class="flex items-center gap-2 text-sm font-black text-emerald-900 mb-3">
+                <span class="material-symbols-outlined text-[22px] text-emerald-700">
+                    image
+                </span>
+
+                صورة الحالة - اختياري
+            </label>
+
+            <label for="case_image"
+                   class="h-14 rounded-2xl border border-dashed border-emerald-300 bg-emerald-50/60 flex items-center justify-center gap-3 cursor-pointer hover:bg-emerald-100 transition-all text-emerald-800 font-bold">
+
+                <span class="material-symbols-outlined">
+                    upload_file
+                </span>
+
+                <span id="case-image-name">
+                    اختاري صورة
+                </span>
+
+            </label>
+
+            <input
+                id="case_image"
+                type="file"
+                name="case_image"
+                accept="image/*"
+                class="hidden"
+                onchange="document.getElementById('case-image-name').innerText = this.files[0] ? this.files[0].name : 'اختاري صورة';"
+            />
+
+            <p class="mt-3 text-xs text-emerald-900/50 leading-relaxed">
+                يمكنك رفع صورة للجرح أو العرض الظاهر لمساعدة الطبيب.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        <!-- Date -->
+        <div class="bg-white rounded-3xl border border-emerald-100 p-5 shadow-sm">
+
+            <label class="flex items-center gap-2 text-sm font-black text-emerald-900 mb-3">
+                <span class="material-symbols-outlined text-[22px] text-emerald-700">
+                    calendar_month
+                </span>
+
+                تاريخ الموعد المفضل
+            </label>
+
+            <input
+                name="booking_date"
+                value="{{ old('booking_date') }}"
+                type="date"
+                dir="ltr"
+                class="w-full h-14 rounded-2xl border border-emerald-100 bg-emerald-50/60 px-4 text-emerald-900 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 text-left"
+            />
+
+        </div>
+
+        <!-- Time -->
+        <div class="bg-white rounded-3xl border border-emerald-100 p-5 shadow-sm">
+
+            <label class="flex items-center gap-2 text-sm font-black text-emerald-900 mb-3">
+                <span class="material-symbols-outlined text-[22px] text-emerald-700">
+                    schedule
+                </span>
+
+                الوقت المفضل
+            </label>
+
+            <input
+                name="booking_time"
+                value="{{ old('booking_time') }}"
+                type="time"
+                dir="ltr"
+                class="w-full h-14 rounded-2xl border border-emerald-100 bg-emerald-50/60 px-4 text-emerald-900 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:border-emerald-700 text-left"
+            />
+
+        </div>
+
+    </div>
+
+</div>
 
                     <div class="pt-4 flex flex-col sm:flex-row gap-4">
 

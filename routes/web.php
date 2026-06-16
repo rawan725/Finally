@@ -9,6 +9,8 @@ use App\Http\Controllers\AdminSupplyController;
 use App\Http\Controllers\AdminAnimalController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorBookingController;
+use App\Http\Controllers\AdminDoctorController;
+use App\Http\Controllers\ContactMessageController;
 
 Route::view('/', 'home')->name('home');
 
@@ -201,5 +203,57 @@ Route::put('/admin/animals/{id}', [AdminAnimalController::class, 'update'])
 Route::delete('/admin/animals/{id}', [AdminAnimalController::class, 'destroy'])
     ->middleware('auth')
     ->name('admin.animals.destroy');
+
+    Route::get('/admin/doctors', [AdminDoctorController::class, 'index'])
+    ->middleware('auth')
+    ->name('admin.doctors');
+
+Route::get('/admin/doctors/create', [AdminDoctorController::class, 'create'])
+    ->middleware('auth')
+    ->name('admin.doctors.create');
+
+Route::post('/admin/doctors', [AdminDoctorController::class, 'store'])
+    ->middleware('auth')
+    ->name('admin.doctors.store');
+
+Route::get('/admin/doctors/{id}/edit', [AdminDoctorController::class, 'edit'])
+    ->middleware('auth')
+    ->name('admin.doctors.edit');
+
+Route::put('/admin/doctors/{id}', [AdminDoctorController::class, 'update'])
+    ->middleware('auth')
+    ->name('admin.doctors.update');
+
+Route::delete('/admin/doctors/{id}', [AdminDoctorController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('admin.doctors.destroy');
+
+
+    Route::get('/admin/doctor-bookings', [DoctorBookingController::class, 'adminIndex'])
+    ->middleware('auth')
+    ->name('admin.doctor.bookings');
+
+Route::patch('/admin/doctor-bookings/{id}/status', [DoctorBookingController::class, 'updateStatus'])
+    ->middleware('auth')
+    ->name('admin.doctor.bookings.status');
+
+    Route::get('/my-consultations', [DoctorBookingController::class, 'myConsultations'])
+    ->middleware('auth')
+    ->name('my.consultations');
+    Route::delete('/admin/doctor-bookings/{id}', [DoctorBookingController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('admin.doctor.bookings.destroy');
+
+    Route::post('/contact-message', [ContactMessageController::class, 'store'])
+    ->name('contact.store');
+
+Route::get('/admin/contact-messages', [ContactMessageController::class, 'adminIndex'])
+    ->middleware('auth')
+    ->name('admin.contact.messages');
+
+Route::delete('/admin/contact-messages/{id}', [ContactMessageController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('admin.contact.messages.destroy');
+
 
 require __DIR__.'/auth.php';

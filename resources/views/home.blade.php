@@ -26,15 +26,28 @@
 </div>
 </div>
 <div class="order-1 md:order-2 relative">
-<div class="absolute -top-12 -left-12 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl"></div>
-<div class="relative z-10 rounded-[48px] overflow-hidden shadow-2xl rotate-2">
-<img alt="Pet Care" class="w-full h-[500px] object-cover" data-alt="A happy golden retriever sitting next to a smiling veterinarian in a modern, sunlit clinic with soft green plants in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMzuwPi1wtxW7HvtMWn7n661q2iqzmcBXavsqW0cWmaNGCILy7hzXZTr3j97R19sBYJD91_D_OM3jeNfVdSPrONMOryAjhzC7lgYxzFvPE0vJ_P7G4k23WmWDcyHhOZnyRXT5FQVBz6PR3ICu2FqTqpa_L8Hiol5I9leHK3G_cNM6v-HA5J-kgusTmMKA84riCikWuzLarr2xogJNW6MbJI5pw7ermApLqG20YvkfM7a6AodxzINEc4wcec9XgLmMHvuZ331whVA"/>
-</div>
-<div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-3xl shadow-xl z-20 flex items-center gap-3 border border-emerald-50">
-<div class="bg-emerald-100 p-2 rounded-full">
-<span class="material-symbols-outlined text-secondary" data-icon="verified">verified</span>
-</div>
-<div>
+
+    <div class="absolute -top-12 -left-12 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 rounded-[48px] overflow-hidden shadow-2xl rotate-2 group">
+
+        <img
+            alt="Pet Care"
+            class="w-full h-[500px] object-cover scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
+            src="{{ asset('images/home/hero-pet.jpg') }}"
+        />
+
+    </div>
+
+    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-3xl shadow-xl z-20 flex items-center gap-3 border border-emerald-50">
+
+        <div class="bg-emerald-100 p-2 rounded-full">
+            <span class="material-symbols-outlined text-secondary" data-icon="verified">
+                verified
+            </span>
+        </div>
+
+        <div>
 <p class="text-sm font-bold text-primary">أطباء معتمدون</p>
 <p class="text-xs text-on-surface-variant">رعاية طبية على مدار الساعة</p>
 </div>
@@ -46,29 +59,89 @@
 <section class="px-6 py-12">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 <!-- Large Card -->
-<div class="md:col-span-2 bg-emerald-900 rounded-[32px] p-8 text-white relative overflow-hidden group">
-<div class="relative z-10 max-w-xs text-right">
-<h3 class="text-headline-lg mb-4">قسم الكلاب المدللة</h3>
-<p class="text-emerald-100/80 mb-6">اكتشف أحدث تشكيلة من الملابس والإكسسوارات الفاخرة للكلاب.</p>
-<button class="px-6 py-2 rounded-full bg-white text-emerald-900 font-label-lg transition-transform group-hover:scale-105">استعرض المزيد</button>
+<div class="md:col-span-2 bg-emerald-900 rounded-[32px] p-8 text-white relative overflow-hidden group min-h-[280px]">
+
+    <div class="relative z-10 max-w-xs text-right">
+        <h3 class="text-headline-lg mb-4">
+            قسم الكلاب المدللة
+        </h3>
+
+        <p class="text-emerald-100/80 mb-6">
+            اكتشف أحدث تشكيلة من الملابس والإكسسوارات الفاخرة للكلاب.
+        </p>
+
+        <button class="px-6 py-2 rounded-full bg-white text-emerald-900 font-label-lg transition-transform group-hover:scale-105">
+            استعرض المزيد
+        </button>
+    </div>
+
+    <img
+        alt="Dog Fashion"
+        class="absolute top-0 left-0 w-1/2 h-full object-cover opacity-80 scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
+        src="{{ asset('images/home/dog-fashion.jpg') }}"
+    />
+
+    <div class="absolute inset-0 bg-gradient-to-l from-emerald-900 via-emerald-900/80 to-transparent pointer-events-none"></div>
+
 </div>
-<img alt="Dog Fashion" class="absolute top-0 left-0 w-1/2 h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="A stylish pug wearing a small green sweater and bowtie looking towards the camera against a soft background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL7aExsKS6mhoE5G8AQa9ZGgQkS_XyF5TPlplNvTdgH0rdYG8WDM05aoAlhthT7OybQ767ILeFriJjrWyyTj86aKiCxnXHcezkuRdcjRP5AwAA6eUkzbxa0ReCwH3BU0Nco01wgj-OI_GMB8-0rp8TBwC92rN15Y44sUfbs5li8wVV-4bG1EW9CqT416ERpZllErBHTtNeCDAI6aBjT9QsvzFhdvVrSJBHg9XgwKeSKo6uN9-V_Ul7JoCrKnEu5Sryz8nEmukjBg"/>
-</div>
+
 <!-- Small Card 1 -->
-<div class="bg-secondary-container rounded-[32px] p-8 text-on-secondary-container flex flex-col justify-between items-end group">
-<span class="material-symbols-outlined text-4xl" data-icon="medication">medication</span>
-<div class="text-right">
-<h3 class="text-headline-md mt-4">الصيدلية</h3>
-<p class="text-sm opacity-80">جميع الأدوية والمكملات الغذائية متوفرة</p>
-</div>
+<div class="bg-secondary-container rounded-[32px] p-8 text-on-secondary-container relative overflow-hidden flex flex-col justify-between items-end group min-h-[220px]">
+
+    <img
+        alt="Pharmacy"
+        class="absolute inset-0 w-full h-full object-cover opacity-20 scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
+        src="{{ asset('images/home/pharmacy-card.jpg') }}"
+    />
+
+    <div class="relative z-10 flex flex-col items-end justify-between h-full">
+
+        <span class="material-symbols-outlined text-4xl" data-icon="medication">
+            medication
+        </span>
+
+        <div class="text-right">
+            <h3 class="text-headline-md mt-4">
+                الصيدلية
+            </h3>
+
+            <p class="text-sm opacity-80">
+                جميع الأدوية والمكملات الغذائية متوفرة
+            </p>
+        </div>
+
+    </div>
+
 </div>
 <!-- Small Card 2 -->
-<div class="bg-white rounded-[32px] p-8 border border-emerald-100 shadow-sm flex flex-col justify-between items-end group hover:border-secondary transition-all">
-<span class="material-symbols-outlined text-4xl text-secondary" data-icon="restaurant">restaurant</span>
-<div class="text-right">
-<h3 class="text-headline-md mt-4">تغذية صحية</h3>
-<p class="text-sm text-on-surface-variant">طعام عضوي وطبيعي 100%</p>
-</div>
+<div class="bg-white rounded-[32px] p-8 border border-emerald-100 shadow-sm relative overflow-hidden flex flex-col justify-between items-end group hover:border-secondary transition-all min-h-[220px]">
+
+    <img
+        alt="Healthy Pet Food"
+        class="absolute inset-0 w-full h-full object-cover opacity-200 scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
+        src="{{ asset('images/home/healthy-food.jpg') }}"
+    />
+
+    <div class="absolute inset-0 bg-white/65 pointer-events-none"></div>
+
+    <div class="relative z-10 flex flex-col items-end justify-between h-full">
+
+        <span class="material-symbols-outlined text-4xl text-secondary" data-icon="restaurant">
+            restaurant
+        </span>
+
+        <div class="text-right">
+            <h3 class="text-headline-md mt-4">
+                تغذية صحية
+            </h3>
+
+            <p class="text-sm text-on-surface-variant">
+                طعام عضوي وطبيعي 100%
+            </p>
+        </div>
+
+    </div>
+
 </div>
 <!-- Contact Us Card -->
 <div class="md:col-span-2 bg-gradient-to-br from-emerald-50 to-white rounded-[32px] p-10 border border-emerald-100 flex flex-col md:flex-row-reverse justify-between items-center gap-8 group">
@@ -87,22 +160,59 @@
 </div>
 </div>
 <div class="relative w-full md:w-64 bg-white rounded-2xl shadow-inner border border-emerald-50 p-4 flex flex-col gap-4 md:w-80">
-<form class="flex flex-col gap-4 w-full" onsubmit="return false;">
+    @if(session('contact_success'))
+    <div class="mb-4 rounded-2xl bg-emerald-100 border border-emerald-200 text-emerald-900 px-4 py-3 text-sm font-bold text-right">
+        {{ session('contact_success') }}
+    </div>
+@endif
+<form class="flex flex-col gap-4 w-full" method="POST" action="{{ route('contact.store') }}">
+    @csrf
 <div class="space-y-1">
-<label class="block text-xs font-bold text-primary text-right">الاسم الكامل</label>
-<input class="w-full px-3 py-2 rounded-xl border border-emerald-100 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all text-sm bg-white/50 text-right" placeholder="أدخل اسمك هنا" type="text"/>
+    <label class="block text-xs font-bold text-primary text-right">
+        الاسم الكامل
+    </label>
+
+    <input
+        name="full_name"
+        class="w-full px-3 py-2 rounded-xl border border-emerald-100 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all text-sm bg-white/50 text-right"
+        placeholder="أدخل اسمك هنا"
+        type="text"
+        required
+    />
 </div>
+
 <div class="space-y-1">
-<label class="block text-xs font-bold text-primary text-right">البريد الإلكتروني</label>
-<input class="w-full px-3 py-2 rounded-xl border border-emerald-100 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all text-sm bg-white/50 text-right" placeholder="name@example.com" type="email"/>
+    <label class="block text-xs font-bold text-primary text-right">
+        البريد الإلكتروني
+    </label>
+
+    <input
+        name="email"
+        class="w-full px-3 py-2 rounded-xl border border-emerald-100 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all text-sm bg-white/50 text-left"
+        placeholder="name@example.com"
+        type="email"
+        dir="ltr"
+        required
+    />
 </div>
+
 <div class="space-y-1">
-<label class="block text-xs font-bold text-primary text-right">رسالتك</label>
-<textarea class="w-full px-3 py-2 rounded-xl border border-emerald-100 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all text-sm bg-white/50 text-right resize-none" placeholder="كيف يمكننا مساعدتك؟" rows="3"></textarea>
+    <label class="block text-xs font-bold text-primary text-right">
+        رسالتك
+    </label>
+
+    <textarea
+        name="message"
+        class="w-full px-3 py-2 rounded-xl border border-emerald-100 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all text-sm bg-white/50 text-right resize-none"
+        placeholder="كيف يمكننا مساعدتك؟"
+        rows="3"
+        required
+    ></textarea>
 </div>
+
 <button class="w-full bg-primary text-white py-3 rounded-xl font-label-lg hover:bg-primary/90 hover:shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 mt-2" type="submit">
-<span>إرسال</span>
-<span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+    <span>إرسال</span>
+    <span class="material-symbols-outlined text-sm" data-icon="send">send</span>
 </button>
 </form>
 </div>

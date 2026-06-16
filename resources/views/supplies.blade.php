@@ -2,15 +2,28 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative h-[400px] flex items-center overflow-hidden">
-<div class="absolute inset-0 z-0">
-<img alt="Pet Supplies Hero" class="w-full h-full object-cover" data-alt="Modern pet boutique interior with clean wooden shelves, aesthetic toys, and natural lighting, vibrant green plants in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1pf64gvk85MHqQ__EpEP_SkxyRICWetxCaREJW__lCKl3_uzf1HLM-aA8622HvZUerQyT1bLRaNXi7xmF9T4lW3bOiyBYjZoFXw74tynXVmGGvPPCHmVSgjZ9hSj02ze4miAkt3ItZcBOJHpsKM3C27eE4B9g3bL30v3x9WKvh1MILqGONrYgKQZDeV3BEtXlrbP9GJqRmYlXRYC3H-s4gixwHC3-epCVdiQ0YHZatCgv5mIIXIQnLFgJic9eZ-SIqiqcE1WJAw"/>
-<div class="absolute inset-0 bg-gradient-to-l from-primary/80 to-transparent"></div>
-</div>
-<div class="container mx-auto px-6 relative z-10 text-right">
-<h1 class="font-display-lg text-display-lg text-white mb-4">عالم متكامل لرفاهية أليفك</h1>
-<p class="font-body-lg text-body-lg text-white/90 max-w-xl ml-auto">نختار بعناية أفضل المنتجات العالمية لضمان صحة وسعادة حيوانك الأليف، من أجود أنواع الطعام إلى أرقى الإكسسوارات.</p>
-</div>
+<section class="relative h-[400px] flex items-center overflow-hidden group">
+
+    <div class="absolute inset-0 z-0">
+        <img
+            alt="Pet Supplies Hero"
+            class="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
+            src="{{ asset('images/supplies/supplies-hero.jpg') }}"
+        >
+
+        <div class="absolute inset-0 bg-gradient-to-l from-primary/80 to-transparent"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 text-right">
+        <h1 class="font-display-lg text-display-lg text-white mb-4">
+            عالم متكامل لرفاهية أليفك
+        </h1>
+
+        <p class="font-body-lg text-body-lg text-white/90 max-w-xl ml-auto">
+            نختار بعناية أفضل المنتجات العالمية لضمان صحة وسعادة حيوانك الأليف، من أجود أنواع الطعام إلى أرقى الإكسسوارات.
+        </p>
+    </div>
+
 </section>
 <!-- Category Navigation -->
 <section id="supply-filters" class="py-10 bg-surface">

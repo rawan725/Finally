@@ -2,6 +2,41 @@
 
 @section('content')
 
+<style>
+    .doctors-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 320px);
+        gap: 28px;
+        justify-content: center;
+        align-items: start;
+    }
+
+    .doctor-card {
+        width: 320px;
+        max-width: 100%;
+    }
+
+    .doctor-image-box {
+        height: 230px;
+    }
+
+    @media (max-width: 1100px) {
+        .doctors-grid {
+            grid-template-columns: repeat(2, 320px);
+        }
+    }
+
+    @media (max-width: 700px) {
+        .doctors-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .doctor-card {
+            width: 100%;
+        }
+    }
+</style>
+
 <!-- Hero Section -->
 <section class="relative py-20 px-6 overflow-hidden">
 
@@ -14,7 +49,7 @@
         </h1>
 
         <p class="text-lg text-emerald-900/60 max-w-2xl mx-auto leading-relaxed">
-            نحن نهتم بصحة حيوانك الأليف كما نهتم بك. اختاري الطبيب المناسب واحجزي موعدًا أو استشارة أونلاين بسهولة.
+            نحن نهتم بصحة حيوانك الأليف كما نهتم بك. اختاري الطبيب المناسب واحجزي موعدًا أو استشارة واتساب بسهولة.
         </p>
 
         <div class="pt-4">
@@ -43,13 +78,27 @@
         </div>
     @endif
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="doctors-grid">
 
         @forelse($doctors as $doctor)
 
-            <div class="group bg-white rounded-[24px] overflow-hidden shadow-[0px_4px_20px_rgba(27,67,50,0.04)] border border-emerald-100 hover:shadow-[0px_10px_30px_rgba(27,67,50,0.10)] transition-all duration-300">
+            @php
+                $cleanWhatsapp = preg_replace('/\D+/', '', $doctor->whatsapp_number ?? '');
 
-                <div class="aspect-[4/5] overflow-hidden relative bg-emerald-50 flex items-center justify-center">
+                $whatsappText = "مرحبا دكتور " . $doctor->name . "، أنا من منصة Smart Pet.\n"
+                    . "أريد استشارة أونلاين لحيواني الأليف.\n\n"
+                    . "اسم الحيوان:\n"
+                    . "نوع الحيوان:\n"
+                    . "المشكلة:\n";
+
+                $whatsappUrl = $cleanWhatsapp
+                    ? 'https://wa.me/' . $cleanWhatsapp . '?text=' . rawurlencode($whatsappText)
+                    : null;
+            @endphp
+
+            <div class="doctor-card group bg-white rounded-[24px] overflow-hidden shadow-[0px_4px_20px_rgba(27,67,50,0.04)] border border-emerald-100 hover:shadow-[0px_10px_30px_rgba(27,67,50,0.10)] transition-all duration-300">
+
+                <div class="doctor-image-box overflow-hidden relative bg-emerald-50 flex items-center justify-center">
 
                     @if($doctor->image)
                         <img
@@ -137,6 +186,18 @@
 
                     </div>
 
+                    @if($doctor->response_time)
+                        <div class="mb-5 rounded-2xl bg-emerald-50 px-4 py-3 text-emerald-900 text-sm font-bold flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-[20px]">
+                                schedule
+                            </span>
+
+                            <span>
+                                وقت الاستجابة: {{ $doctor->response_time }}
+                            </span>
+                        </div>
+                    @endif
+
                     <div class="flex flex-col gap-3 border-t border-emerald-50 pt-5">
 
                         <a href="{{ route('doctor.book', ['doctor' => $doctor->id, 'type' => 'appointment']) }}"
@@ -151,17 +212,37 @@
                             </span>
                         </a>
 
-                        <a href="{{ route('doctor.book', ['doctor' => $doctor->id, 'type' => 'online']) }}"
-                           style="border:1px solid #a7f3d0; color:#065f46; padding:12px 18px; border-radius:9999px; text-align:center; font-weight:700; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px;">
+                        @if($whatsappUrl)
 
-                            <span class="material-symbols-outlined">
-                                videocam
-                            </span>
+                            <a href="{{ $whatsappUrl }}"
+                               target="_blank"
+                               style="border:1px solid #a7f3d0; color:#065f46; padding:12px 18px; border-radius:9999px; text-align:center; font-weight:700; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px;">
 
-                            <span>
-                                استشارة أونلاين
-                            </span>
-                        </a>
+                                <span class="material-symbols-outlined">
+                                    chat
+                                </span>
+
+                                <span>
+                                    استشارة واتساب فورية
+                                </span>
+                            </a>
+
+                        @else
+
+                            <button type="button"
+                                    disabled
+                                    style="border:1px solid #e5e7eb; color:#9ca3af; padding:12px 18px; border-radius:9999px; text-align:center; font-weight:700; background:#f9fafb; display:flex; align-items:center; justify-content:center; gap:8px; cursor:not-allowed;">
+
+                                <span class="material-symbols-outlined">
+                                    chat
+                                </span>
+
+                                <span>
+                                    واتساب غير متاح
+                                </span>
+                            </button>
+
+                        @endif
 
                     </div>
 
@@ -171,7 +252,7 @@
 
         @empty
 
-            <div class="col-span-full bg-white rounded-[24px] p-12 text-center border border-emerald-100 shadow-[0px_4px_20px_rgba(27,67,50,0.04)]">
+            <div style="grid-column: 1 / -1;" class="bg-white rounded-[24px] p-12 text-center border border-emerald-100 shadow-[0px_4px_20px_rgba(27,67,50,0.04)]">
 
                 <div class="w-24 h-24 mx-auto rounded-full bg-emerald-50 flex items-center justify-center text-emerald-800 mb-5">
                     <span class="material-symbols-outlined text-[52px]">
@@ -205,7 +286,7 @@
         </h2>
 
         <p class="text-base mb-8 opacity-80 max-w-xl mx-auto relative z-10">
-            أطباؤنا متواجدون للرد على الاستفسارات العاجلة عبر الاستشارة الأونلاين.
+            أطباؤنا متواجدون للرد على الاستفسارات العاجلة عبر الاستشارة الفورية.
         </p>
 
         <a href="#doctors"

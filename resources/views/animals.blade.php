@@ -3,21 +3,49 @@
 @section('content')
 <main>
 <!-- Hero Section -->
-<section class="relative h-[600px] overflow-hidden">
-<div class="absolute inset-0 z-0">
-<img alt="Golden Retriever and Kitten" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjh-QzE1D7uipEz86MlvWvvu89xK-viGIw6D24NpkUULYoIZz4yvfCuXGLLxsVd4S3DyawaAwepBDbwiU3uWrPDcVtfe0cUnEUDZQ9uPBFEIEsqfn_QmABixTYhgY3eqa4Ni_zCDNrQ7Nn7qKLsXTY2xsllfgFk-6vE3IoJRN_-vYsdyThk2xj0aXB2wd0fnLdNV9gOXDAEYpwAvH_LvUnwRBjIWpjjWhtWZvdTLGqRLmwR-KO-6nzXRx89-Q8LWYimtqcomXGGw"/>
-<div class="absolute inset-0 bg-gradient-to-l from-primary/60 to-transparent"></div>
-<div class="absolute inset-0 hero-gradient"></div>
-</div>
-<div class="relative z-10 h-full max-w-container-max mx-auto px-lg flex flex-col justify-center items-start text-right">
-<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-lg text-label-lg mb-sm">نحن نهتم بأليفك</span>
-<h1 class="font-display-lg text-display-lg text-primary mb-md max-w-2xl leading-tight">اكتشف رفيقك المثالي</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg max-w-xl">نوفر لك أفضل السلالات بصحة ممتازة ورعاية فائقة من متخصصين معتمدين لضمان سعادة أليفك الجديد.</p>
-<div class="flex gap-md">
-<button class="bg-primary text-on-primary px-lg py-md rounded-full font-label-lg text-label-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 active:scale-95">تصفح الحيوانات</button>
-<button class="border-2 border-primary text-primary px-lg py-md rounded-full font-label-lg text-label-lg hover:bg-primary/5 transition-all active:scale-95">اعرف المزيد</button>
-</div>
-</div>
+<section class="relative h-[600px] overflow-hidden group">
+
+    <div class="absolute inset-0 z-0">
+
+        <img
+            alt="Golden Retriever and Kitten"
+            class="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
+            src="{{ asset('images/animals/animals-hero.jpg') }}"
+        />
+
+        <div class="absolute inset-0 bg-gradient-to-l from-primary/60 to-transparent"></div>
+        <div class="absolute inset-0 hero-gradient"></div>
+
+    </div>
+
+    <div class="relative z-10 h-full max-w-container-max mx-auto px-lg flex flex-col justify-center items-start text-right">
+
+        <span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-lg text-label-lg mb-sm">
+            نحن نهتم بأليفك
+        </span>
+
+        <h1 class="font-display-lg text-display-lg text-primary mb-md max-w-2xl leading-tight">
+            اكتشف رفيقك المثالي
+        </h1>
+
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-lg max-w-xl">
+            نوفر لك أفضل السلالات بصحة ممتازة ورعاية فائقة من متخصصين معتمدين لضمان سعادة أليفك الجديد.
+        </p>
+
+        <div class="flex gap-md">
+
+            <button class="bg-primary text-on-primary px-lg py-md rounded-full font-label-lg text-label-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 active:scale-95">
+                تصفح الحيوانات
+            </button>
+
+            <button class="border-2 border-primary text-primary px-lg py-md rounded-full font-label-lg text-label-lg hover:bg-primary/5 transition-all active:scale-95">
+                اعرف المزيد
+            </button>
+
+        </div>
+
+    </div>
+
 </section>
 <!-- Search & Filter Section -->
 <section id="animal-filters" class="max-w-5xl mx-auto px-6 py-10">
