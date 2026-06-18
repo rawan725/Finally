@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\CartItem;
-use Illuminate\Http\Request;
 use App\Models\Animal;
 use App\Models\Supply;
+use App\Models\Doctor;
+use App\Models\DoctorBooking;
+use App\Models\Provider;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -140,18 +144,61 @@ class OrderController extends Controller
         abort(403);
     }
 
+    $usersCount = User::count();
+
     $ordersCount = Order::count();
     $pendingOrdersCount = Order::where('status', 'pending')->count();
+    $acceptedOrdersCount = Order::where('status', 'accepted')->count();
+    $deliveredOrdersCount = Order::where('status', 'delivered')->count();
+    $cancelledOrdersCount = Order::where('status', 'cancelled')->count();
+
     $animalsCount = Animal::count();
     $suppliesCount = Supply::count();
+
+    $doctorsCount = Doctor::count();
+    $doctorBookingsCount = DoctorBooking::count();
+    $pendingDoctorBookingsCount = DoctorBooking::where('status', 'pending')->count();
+
+    $providersCount = Provider::count();
+    $pendingProvidersCount = Provider::where('status', 'pending')->count();
+    $approvedProvidersCount = Provider::where('status', 'approved')->count();
+
     $totalSales = Order::sum('total_price');
 
+    $recentOrders = Order::with('user')
+        ->latest()
+        ->take(5)
+        ->get();
+
+    $recentBookings = DoctorBooking::with(['user', 'doctor'])
+        ->latest()
+        ->take(5)
+        ->get();
+
+    $latestProviders = Provider::with('user')
+        ->latest()
+        ->take(5)
+        ->get();
+
     return view('admin-dashboard', compact(
+        'usersCount',
         'ordersCount',
         'pendingOrdersCount',
+        'acceptedOrdersCount',
+        'deliveredOrdersCount',
+        'cancelledOrdersCount',
         'animalsCount',
         'suppliesCount',
-        'totalSales'
+        'doctorsCount',
+        'doctorBookingsCount',
+        'pendingDoctorBookingsCount',
+        'providersCount',
+        'pendingProvidersCount',
+        'approvedProvidersCount',
+        'totalSales',
+        'recentOrders',
+        'recentBookings',
+        'latestProviders'
     ));
 }
 }

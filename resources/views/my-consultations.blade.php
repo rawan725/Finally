@@ -2,262 +2,201 @@
 
 @section('content')
 
-<main class="max-w-7xl mx-auto px-6 py-12" dir="rtl">
+<section class="min-h-screen bg-emerald-50/40 py-10 px-4">
 
-    <div class="mb-10 text-right">
+    <div class="max-w-7xl mx-auto">
 
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-800 font-bold text-sm mb-4">
-            <span class="material-symbols-outlined text-[20px]">
-                medical_services
-            </span>
+        <!-- Header -->
+        <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-emerald-100 mb-8">
 
-            استشاراتي الطبية
-        </div>
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
 
-        <h1 class="text-4xl font-black text-emerald-900 mb-3">
-            استشاراتي وحجوزاتي
-        </h1>
+                <div class="text-right">
+                    <span class="inline-flex px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-sm font-bold mb-4">
+                        Pet Owner Portal
+                    </span>
 
-        <p class="text-emerald-900/60">
-            يمكنك هنا متابعة طلبات الحجز والاستشارات الطبية الخاصة بحيوانك الأليف.
-        </p>
+                    <h1 class="text-3xl md:text-4xl font-black text-emerald-900 mb-3">
+                        استشاراتي وحجوزاتي الطبية
+                    </h1>
 
-    </div>
-
-    <section class="space-y-6">
-
-        @forelse($bookings as $booking)
-
-            @php
-                $statusLabels = [
-                    'pending' => 'قيد الانتظار',
-                    'accepted' => 'تم القبول',
-                    'completed' => 'مكتملة',
-                    'cancelled' => 'ملغية',
-                ];
-
-                $statusStyles = [
-                    'pending' => 'background:#fef3c7; color:#92400e;',
-                    'accepted' => 'background:#dcfce7; color:#166534;',
-                    'completed' => 'background:#dbeafe; color:#1d4ed8;',
-                    'cancelled' => 'background:#fee2e2; color:#991b1b;',
-                ];
-
-                $typeLabel = $booking->consultation_type === 'online'
-                    ? 'استشارة أونلاين'
-                    : 'حجز موعد عيادة';
-
-                $typeStyle = $booking->consultation_type === 'online'
-                    ? 'background:#dbeafe; color:#1d4ed8;'
-                    : 'background:#d1fae5; color:#065f46;';
-
-                $severityLabels = [
-                    'simple' => 'بسيطة',
-                    'moderate' => 'متوسطة',
-                    'emergency' => 'طارئة',
-                ];
-
-                $severityStyles = [
-                    'simple' => 'background:#dcfce7; color:#166534;',
-                    'moderate' => 'background:#fef3c7; color:#92400e;',
-                    'emergency' => 'background:#fee2e2; color:#991b1b;',
-                ];
-            @endphp
-
-            <article class="bg-white rounded-[30px] border border-emerald-100 shadow-[0_10px_35px_rgba(27,67,50,0.06)] overflow-hidden">
-
-                <div class="bg-gradient-to-l from-emerald-50 to-white px-6 py-5 border-b border-emerald-100">
-
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-
-                        <div class="text-right">
-                            <h2 class="text-xl font-black text-emerald-900">
-                                طلب رقم #{{ $booking->id }}
-                            </h2>
-
-                            <p class="text-sm text-emerald-900/60">
-                                تاريخ الطلب:
-                                {{ $booking->created_at ? $booking->created_at->format('Y-m-d') : 'غير محدد' }}
-                            </p>
-                        </div>
-
-                        <div class="flex flex-wrap gap-3">
-
-                            <span style="{{ $typeStyle }} padding:8px 14px; border-radius:9999px; font-weight:800; font-size:14px;">
-                                {{ $typeLabel }}
-                            </span>
-
-                            <span style="{{ $statusStyles[$booking->status] ?? $statusStyles['pending'] }} padding:8px 14px; border-radius:9999px; font-weight:800; font-size:14px;">
-                                {{ $statusLabels[$booking->status] ?? 'قيد الانتظار' }}
-                            </span>
-
-                        </div>
-
-                    </div>
-
+                    <p class="text-emerald-900/60 leading-relaxed max-w-2xl">
+                        يمكنك من هنا متابعة طلبات الاستشارة الطبية وحجوزات الأطباء، ومعرفة حالة كل طلب.
+                    </p>
                 </div>
 
-                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-5">
-
-                    <div class="rounded-3xl bg-emerald-50 p-5 border border-emerald-100">
-
-                        <div class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center text-emerald-800 mb-4">
-                            <span class="material-symbols-outlined">
-                                medical_services
-                            </span>
-                        </div>
-
-                        <p class="text-xs text-emerald-900/50 mb-1">
-                            الطبيب
-                        </p>
-
-                        <h3 class="font-black text-emerald-900 text-lg">
-                            {{ $booking->doctor->name ?? 'طبيب غير محدد' }}
-                        </h3>
-
-                        <p class="text-sm text-emerald-700">
-                            {{ $booking->doctor->specialty ?? '' }}
-                        </p>
-
-                    </div>
-
-                    <div class="rounded-3xl bg-white p-5 border border-emerald-100">
-
-                        <div class="w-11 h-11 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-800 mb-4">
-                            <span class="material-symbols-outlined">
-                                pets
-                            </span>
-                        </div>
-
-                        <p class="text-xs text-emerald-900/50 mb-1">
-                            الحيوان
-                        </p>
-
-                        <h3 class="font-black text-emerald-900 text-lg">
-                            {{ $booking->pet_name }}
-                        </h3>
-
-                        <p class="text-sm text-emerald-700">
-                            النوع: {{ $booking->pet_type }}
-                        </p>
-
-                    </div>
-
-                    <div class="rounded-3xl bg-white p-5 border border-emerald-100">
-
-                        <div class="w-11 h-11 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-800 mb-4">
-                            <span class="material-symbols-outlined">
-                                calendar_month
-                            </span>
-                        </div>
-
-                        <p class="text-xs text-emerald-900/50 mb-1">
-                            الموعد
-                        </p>
-
-                        <h3 class="font-black text-emerald-900 text-lg">
-                            {{ $booking->booking_date ?? 'غير محدد' }}
-                        </h3>
-
-                        <p class="text-sm text-emerald-700">
-                            {{ $booking->booking_time ?? 'غير محدد' }}
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="px-6 pb-6">
-
-                    <div class="rounded-3xl border border-emerald-100 p-5 bg-white text-right">
-
-                        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-
-                            <div class="flex items-center gap-3">
-
-                                <div class="w-10 h-10 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-800">
-                                    <span class="material-symbols-outlined">
-                                        description
-                                    </span>
-                                </div>
-
-                                <div>
-                                    <p class="text-xs text-emerald-900/50">
-                                        المشكلة
-                                    </p>
-
-                                    <h3 class="font-black text-emerald-900">
-                                        {{ $booking->problem_title }}
-                                    </h3>
-                                </div>
-
-                            </div>
-
-                            <span style="{{ $severityStyles[$booking->severity_level] ?? $severityStyles['simple'] }} padding:8px 14px; border-radius:9999px; font-weight:800; font-size:14px; width:max-content;">
-                                درجة الحالة: {{ $severityLabels[$booking->severity_level] ?? 'بسيطة' }}
-                            </span>
-
-                        </div>
-
-                        <p class="text-emerald-900/60 leading-relaxed mb-5">
-                            {{ $booking->problem_description }}
-                        </p>
-
-                        @if($booking->case_image)
-                            <div class="mt-4">
-
-                                <p class="text-sm font-bold text-emerald-900 mb-3">
-                                    الصورة المرفقة:
-                                </p>
-
-                                <a href="{{ asset('images/doctor-bookings/' . $booking->case_image) }}"
-                                   target="_blank">
-
-                                    <img src="{{ asset('images/doctor-bookings/' . $booking->case_image) }}"
-                                         alt="صورة الحالة"
-                                         style="width:170px; height:120px; object-fit:cover;"
-                                         class="rounded-2xl border border-emerald-100 shadow-sm">
-
-                                </a>
-
-                            </div>
-                        @endif
-
-                    </div>
-
-                </div>
-
-            </article>
-
-        @empty
-
-            <div class="bg-white rounded-[30px] border border-emerald-100 shadow-[0_10px_35px_rgba(27,67,50,0.06)] p-14 text-center">
-
-                <div class="w-24 h-24 mx-auto rounded-full bg-emerald-50 flex items-center justify-center text-emerald-800 mb-5">
+                <div class="w-24 h-24 rounded-3xl bg-emerald-900 text-white flex items-center justify-center shadow-lg shadow-emerald-900/20">
                     <span class="material-symbols-outlined text-[52px]">
-                        assignment
+                        medical_services
                     </span>
                 </div>
 
-                <h2 class="text-2xl font-black text-emerald-900 mb-2">
+            </div>
+
+        </div>
+
+        @if($bookings->count() > 0)
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                @foreach($bookings as $booking)
+
+                    <div class="bg-white rounded-[2rem] p-6 border border-emerald-100 shadow-sm">
+
+                        <div class="flex items-start justify-between gap-4 mb-6">
+
+                            <div class="text-right">
+                                <h2 class="text-2xl font-black text-emerald-900 mb-2">
+                                    {{ $booking->problem_title }}
+                                </h2>
+
+                                <p class="text-emerald-900/60 text-sm">
+                                    الطبيب:
+                                    <span class="font-bold text-emerald-800">
+                                        {{ $booking->doctor->name ?? 'غير محدد' }}
+                                    </span>
+                                </p>
+                            </div>
+
+                            @if($booking->status == 'pending')
+                                <span class="px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 text-xs font-bold">
+                                    قيد المراجعة
+                                </span>
+                            @elseif($booking->status == 'accepted')
+                                <span class="px-4 py-2 rounded-full bg-green-100 text-green-700 text-xs font-bold">
+                                    مقبول
+                                </span>
+                            @elseif($booking->status == 'completed')
+                                <span class="px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-xs font-bold">
+                                    مكتمل
+                                </span>
+                            @elseif($booking->status == 'cancelled')
+                                <span class="px-4 py-2 rounded-full bg-red-100 text-red-700 text-xs font-bold">
+                                    ملغى
+                                </span>
+                            @else
+                                <span class="px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-xs font-bold">
+                                    {{ $booking->status }}
+                                </span>
+                            @endif
+
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+
+                            <div class="bg-emerald-50 rounded-2xl p-4">
+                                <p class="text-xs text-emerald-900/60 mb-1">
+                                    اسم الحيوان
+                                </p>
+
+                                <p class="font-bold text-emerald-900">
+                                    {{ $booking->pet_name }}
+                                </p>
+                            </div>
+
+                            <div class="bg-emerald-50 rounded-2xl p-4">
+                                <p class="text-xs text-emerald-900/60 mb-1">
+                                    نوع الحيوان
+                                </p>
+
+                                <p class="font-bold text-emerald-900">
+                                    {{ $booking->pet_type }}
+                                </p>
+                            </div>
+
+                            <div class="bg-emerald-50 rounded-2xl p-4">
+                                <p class="text-xs text-emerald-900/60 mb-1">
+                                    نوع الخدمة
+                                </p>
+
+                                <p class="font-bold text-emerald-900">
+                                    {{ $booking->consultation_type == 'online' ? 'استشارة أونلاين' : 'حجز موعد بالعيادة' }}
+                                </p>
+                            </div>
+
+                            <div class="bg-emerald-50 rounded-2xl p-4">
+                                <p class="text-xs text-emerald-900/60 mb-1">
+                                    التاريخ والوقت
+                                </p>
+
+                                <p class="font-bold text-emerald-900">
+                                    {{ $booking->booking_date ?? 'غير محدد' }}
+                                    -
+                                    {{ $booking->booking_time ?? 'غير محدد' }}
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="bg-slate-50 rounded-2xl p-4 mb-5">
+
+                            <p class="text-xs text-slate-500 mb-2">
+                                تفاصيل الحالة
+                            </p>
+
+                            <p class="text-slate-700 leading-relaxed text-sm">
+                                {{ $booking->problem_description }}
+                            </p>
+
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3">
+
+                            <a href="{{ route('doctor') }}"
+                               class="flex-1 text-center py-3 px-5 rounded-2xl bg-emerald-900 text-white font-bold hover:bg-emerald-800 transition-all">
+                                حجز استشارة جديدة
+                            </a>
+
+                            <a href="{{ route('dashboard') }}"
+                               class="flex-1 text-center py-3 px-5 rounded-2xl bg-emerald-50 text-emerald-900 font-bold border border-emerald-100 hover:bg-emerald-100 transition-all">
+                                رجوع للوحة المستخدم
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                @endforeach
+
+            </div>
+
+        @else
+
+            <div class="bg-white rounded-[2rem] p-12 text-center border border-emerald-100 shadow-sm">
+
+                <div class="w-24 h-24 mx-auto rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-[52px]">
+                        event_busy
+                    </span>
+                </div>
+
+                <h2 class="text-2xl font-black text-emerald-900 mb-3">
                     لا توجد استشارات بعد
                 </h2>
 
-                <p class="text-emerald-900/60 mb-6">
-                    عندما تحجزين موعدًا عند طبيب، سيظهر الطلب هنا.
+                <p class="text-emerald-900/60 mb-8">
+                    يمكنك اختيار طبيب والبدء بحجز موعد أو استشارة أونلاين.
                 </p>
 
                 <a href="{{ route('doctor') }}"
-                   style="background-color:#065f46; color:white; padding:12px 28px; border-radius:9999px; font-weight:800; text-decoration:none; display:inline-flex;">
-                    احجزي استشارة الآن
+                   class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-900 text-white font-bold hover:bg-emerald-800 transition-all">
+
+                    <span class="material-symbols-outlined">
+                        medical_services
+                    </span>
+
+                    <span>
+                        اختيار طبيب
+                    </span>
+
                 </a>
 
             </div>
 
-        @endforelse
+        @endif
 
-    </section>
+    </div>
 
-</main>
+</section>
 
 @endsection

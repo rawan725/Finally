@@ -11,6 +11,10 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorBookingController;
 use App\Http\Controllers\AdminDoctorController;
 use App\Http\Controllers\ContactMessageController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\PetMedicalProfileController;
+
 
 Route::view('/', 'home')->name('home');
 
@@ -254,6 +258,32 @@ Route::get('/admin/contact-messages', [ContactMessageController::class, 'adminIn
 Route::delete('/admin/contact-messages/{id}', [ContactMessageController::class, 'destroy'])
     ->middleware('auth')
     ->name('admin.contact.messages.destroy');
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+    ->middleware('auth')
+    ->name('admin.dashboard');
 
+    Route::get('/provider/dashboard', [ProviderController::class, 'dashboard'])
+    ->middleware('auth')
+    ->name('provider.dashboard');
+
+Route::post('/provider/apply', [ProviderController::class, 'storeApplication'])
+    ->middleware('auth')
+    ->name('provider.apply');
+
+    Route::get('/admin/providers', [ProviderController::class, 'adminIndex'])
+    ->middleware('auth')
+    ->name('admin.providers');
+
+Route::patch('/admin/providers/{provider}/status', [ProviderController::class, 'updateStatus'])
+    ->middleware('auth')
+    ->name('admin.providers.status');
+
+    Route::get('/pet-medical-profile', [PetMedicalProfileController::class, 'index'])
+    ->middleware('auth')
+    ->name('pet.medical.profile');
+
+Route::post('/pet-medical-profile', [PetMedicalProfileController::class, 'store'])
+    ->middleware('auth')
+    ->name('pet.medical.profile.store');
 
 require __DIR__.'/auth.php';
