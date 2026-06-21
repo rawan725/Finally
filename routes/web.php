@@ -14,6 +14,7 @@ use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\PetMedicalProfileController;
+use App\Http\Controllers\PetRecommendationController;
 
 
 Route::view('/', 'home')->name('home');
@@ -285,5 +286,13 @@ Route::patch('/admin/providers/{provider}/status', [ProviderController::class, '
 Route::post('/pet-medical-profile', [PetMedicalProfileController::class, 'store'])
     ->middleware('auth')
     ->name('pet.medical.profile.store');
+
+    Route::get('/pet-recommendation', [PetRecommendationController::class, 'index'])
+    ->middleware('auth')
+    ->name('pet.recommendation');
+
+Route::post('/pet-recommendation', [PetRecommendationController::class, 'recommend'])
+    ->middleware('auth')
+    ->name('pet.recommendation.recommend');
 
 require __DIR__.'/auth.php';

@@ -28,8 +28,13 @@
                class="text-emerald-900/60 hover:text-emerald-900 transition-colors">
                 الأطباء
             </a>
+            <a href="{{ route('pet.recommendation') }}"
+   class="text-emerald-900/60 hover:text-emerald-900 transition-colors">
+    التوصية الذكية
+</a>
 
         </nav>
+        
 
         <!-- Right Side -->
         <div class="flex items-center gap-4">
